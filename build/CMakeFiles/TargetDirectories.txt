@@ -1,3 +1,0 @@
-C:/Users/raarh/GitHub/Raytracer-Project/build/CMakeFiles/inOneWeekend.dir
-C:/Users/raarh/GitHub/Raytracer-Project/build/CMakeFiles/edit_cache.dir
-C:/Users/raarh/GitHub/Raytracer-Project/build/CMakeFiles/rebuild_cache.dir

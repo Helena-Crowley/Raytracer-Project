@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/raarh/GitHub/Raytracer-Project/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/inOneWeekend.dir/includes_CXX.rsp -g -std=c++11 -o CMakeFiles\\inOneWeekend.dir\\src\\main.cc.obj -c C:\\Users\\raarh\\GitHub\\Raytracer-Project\\src\\main.cc",
-  "file": "C:/Users/raarh/GitHub/Raytracer-Project/src/main.cc",
-  "output": "CMakeFiles/inOneWeekend.dir/src/main.cc.obj"
-}
-]
