@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <memory>
+#include <cstdlib>
 
 using std::make_shared;
 using std::shared_ptr;
@@ -19,7 +20,16 @@ inline double deg_to_rad(double deg) {
     return deg * pi / 180.0;
 }
 
-// headers to bring with
+inline double random_double() {
+    return rand() / (RAND_MAX + 1.0); // btwn 0 and 1 [0,1)
+    cout << rand() / (RAND_MAX + 1.0);
+}
+
+inline double random_double(double min, double max) {
+    return min + (max - min) * random_double();
+}
+
+// headers 
 #include "color.h"
 #include "interval.h"
 #include "ray.h"
