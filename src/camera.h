@@ -8,7 +8,8 @@ class camera {
     //Image
     double aspect_ratio = 1.0;
     int image_width = 100;
-    int samples_per_pixel; // how many samples from surrounding pixels for each pixel
+    int samples_per_pixel = 10; // how many samples from surrounding pixels for each pixel
+    int max_depth = 10; // max number of ray bounces allowed
 
     void render(const hittable& world) {
         initialize();
@@ -21,7 +22,7 @@ class camera {
                 color pixel_color(0,0,0);
                 for (int sample = 0; sample < samples_per_pixel; sample++) {
                     ray r = get_ray(i, j);
-                    pixel_color += ray_color(r, world); // sum surrounding colors
+                    pixel_color += ray_color(r, max_depth, world); // sum surrounding colors
                 }
                 write_color(cout, pixel_samples_scale * pixel_color);
             }
@@ -77,11 +78,16 @@ class camera {
         return vec3(random_double() - 0.5, random_double() - 0.5, 0);
     }
 
-    color ray_color(const ray& r, const hittable& world) const {
-        // determine color of pixel
+    color ray_color(const ray& r, int depth, const hittable& world) const { // determine color of pixel
+        // no more light returned after hitting ray bounce limit
+        if (depth <= 0)
+            return color(0,0,0);
+
         hit_record rec;
-        if (world.hit(r, interval(0, infinity), rec)) {
-            return 0.5 * (rec.normal + color(1, 1, 1));
+        if (world.hit(r, interval(0.001, infinity), rec)) {
+            vec3 direction = rec.normal + random_unit_vector(); // lambertian diffuse model (rays more likely to scatter close to normal)
+            //vec3 direction = random_on_hemisphere(rec.normal); // simple random diffuse model
+            return 0.5 * ray_color(ray(rec.p, direction), depth-1, world); // 0.5 = bounced ray keeps 50% of its color, meaning grey
         }
 
         // backgroud color for our vieewport
