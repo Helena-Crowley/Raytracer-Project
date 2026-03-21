@@ -3,10 +3,13 @@
 
 #include "main_const_util.h"
 
+class material; 
+
 class hit_record {
     public:
     point3 p;
     vec3 normal;
+    shared_ptr<material> mat; //need matierial info for ray_color()
     double t;
     bool front_face;
 
