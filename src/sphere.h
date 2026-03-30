@@ -10,8 +10,8 @@ class sphere : public hittable {
 
     bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
         // math deriv in 5.1/6.2
-        vec3 oc = center - r.origin();
-        auto a = r.direction().length_squared();
+        vec3 oc = center - r.origin(); //vec btwn ray origin and center of sphere
+        auto a = r.direction().length_squared(); 
         auto h = dot(r.direction(), oc);
         auto c = oc.length_squared() - radius*radius;
 

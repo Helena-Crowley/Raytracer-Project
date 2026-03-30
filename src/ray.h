@@ -7,14 +7,13 @@ class ray {
     public:
     ray() {}
 
-    ray(const point3& origin, const vec3& direction) : orig(origin), dir(direction) {}
+    ray(const point3& origin, const vec3& direction) : orig(origin), dir(direction) {} //ray is made of origin pt and direction vector
 
     //get origin and direction (read only)
     const point3& origin() const { return orig; }
     const vec3& direction() const { return dir; }
 
-    //"at" is ray function
-    point3 at(double t) const {
+    point3 at(double t) const { // returns a point along the direction vector scaled by t
         return orig + t * dir; //P*(t) = A + t*B
     }
 
